@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: pyrixs
+Version: 0+untagged.68.ge94531f.dirty
+Summary: Python based analysis for RIXS images and spectra
+Home-page: https://github.com/mpmdean/pyrixs
+Author: Mark P. M. Dean
+Author-email: mdean@bnl.gov
+License: MIT
+Description-Content-Type: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
