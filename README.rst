@@ -1,7 +1,7 @@
 sixrixs
 =========================
 
-Python 3 based analysis for RIXS images and spectra compatible with command line and a GUI based on jupyter widgets. Development version -- user beware!
+Python 3 based analysis for RIXS images and spectra compatible with command line and a GUI based on jupyter widgets. This is designed for use at the SIX beamline. Development version -- user beware!
 
 Installation Instructions
 =========================
