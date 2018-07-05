@@ -1,8 +1,8 @@
 Metadata-Version: 1.0
-Name: pyrixs
+Name: sixrixs
 Version: 0+untagged.3.g8316b93.dirty
 Summary: Python based analysis for RIXS images and spectra
-Home-page: https://github.com/mpmdean/pyrixs
+Home-page: https://github.com/mpmdean/sixrixs
 Author: Mark P. M. Dean
 Author-email: mdean@bnl.gov
 License: MIT

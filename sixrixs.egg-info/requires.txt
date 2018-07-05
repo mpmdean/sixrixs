@@ -1,0 +1,7 @@
+lmfit
+pandas
+h5py
+ipywidgets
+traitlets
+ipympl
+pillow

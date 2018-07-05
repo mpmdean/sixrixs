@@ -30,7 +30,7 @@ Installation Instructions
         cd pyrixs-master
         python setup.py install
         conda install pandas h5py ipywidgets traitlets pillow
-        conda install -c conda-forge lmfit
+        conda install -c conda-forge lmfit ipympl
 
         Optional:
         conda install nexusformat
