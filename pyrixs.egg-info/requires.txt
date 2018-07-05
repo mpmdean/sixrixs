@@ -1,7 +1,0 @@
-lmfit
-pandas
-h5py
-ipywidgets
-traitlets
-nexusformat
-pillow
