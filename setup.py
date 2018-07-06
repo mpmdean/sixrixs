@@ -1,9 +1,9 @@
 from setuptools import setup
-import versioneer
+#import versioneer
 
 setup(name='sixrixs',
-      version=versioneer.get_version(),
-      cmdclass=versioneer.get_cmdclass(),
+      #iversion=versioneer.get_version(),
+      #icmdclass=versioneer.get_cmdclass(),
       description='Python based analysis for RIXS images and spectra',
       url='https://github.com/mpmdean/sixrixs',
       author='Mark P. M. Dean',

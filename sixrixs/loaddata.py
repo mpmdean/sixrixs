@@ -6,7 +6,45 @@ data from different sources.
 import numpy as np
 import matplotlib.pyplot as plt
 import h5py
-from nexusformat.nexus import nxload
+
+def get_array(header):
+    """ Get the RIXS data array associated with a header
+    N.B. Appropriate for small data (due to simplicity)
+    Not great if dataset is very big
+    
+    
+    Parameters
+    -----------
+    header : databroker._core.Header
+        The header associated with the data
+        
+    Returns
+    -----------
+    array : np.array
+        four dimentional array
+        axes are: events, images/event, rows, columns
+    """
+    array = np.array([im for im in header.data('rixscam_image')]).astype(np.int32)
+    return array
+
+def array_to_images(array):
+    """ Index the real images out of the array
+    
+    Parameters
+    -----------
+    array : numpy array
+        4d data array
+        
+    Returns
+    -----------
+    imageL : np.array
+        four dimentional array corresponding to the left chip.
+    imageR : np.array
+        four dimentional array corresponding to the right chip.
+    """
+    roi_L = np.s_[:,:,175:1609,17:1649]
+    roi_R = np.s_[:,:,175:1609,3319:4951]
+    return array[roi_L], array[roi_R]
 
 def image_to_photon_events(image):
     """ Convert 2D image into photon_events
@@ -36,58 +74,8 @@ def photon_events_to_image(photon_events):
     image[yind, xind] = I
     return image
 
-def load_nxfile(filename):
-    """Load nxs data from Soleil. Each file may
-    contain more than 1 scan.
-    
-    Parameters
-    -----------
-    nxs file : string
-        Contains multiple 2D images
 
-    Returns
-    -----------
-    image : np.array
-        Sum 2D images from nxs file
-    """
-    fload = nxload(filename)
 
-    for key in fload:
-        if 'scan' in key:
-            lb = key
-                
-    data = fload[lb].scan_data.data_01.nxdata
-        
-    image = 0
-    for i in range(len(data)):
-        if type(image) is int:
-            image = data[i]
-        else:
-            image += data[i]
-
-    return image
-                  
-def get_image(filename):
-    """Return list of photon events as X,Y,I columns
-    where I is the number of photons
-
-    files with .h5 are assumed to be SLS format
-    
-    files with .nxs are assumed to be Soleil format
-    """
-    if filename[-3:].lower() == '.h5':
-        h5file = h5py.File(filename)
-        XY = h5file['entry']['analysis']['events'].value
-        I = np.ones((XY.shape[0],1))
-        return np.hstack((XY, I))
-    elif filename[-4:].lower() == '.tif':
-        image = plt.imread(filename)
-        return image_to_photon_events(image)
-    elif filename[-4:].lower() == '.nxs':
-        image = load_nxfile(filename)
-        return image_to_photon_events(image)
-    else:
-        print('Unknown file extention {}'.format(filename))
 
 def get_spectrum(filename):
     """ return spectrum as
